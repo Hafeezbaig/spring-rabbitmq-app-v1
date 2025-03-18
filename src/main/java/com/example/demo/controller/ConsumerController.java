@@ -25,3 +25,4 @@ public class ConsumerController {
         return messages.poll();  // Returns and removes the first message in the queue
     }
 }
+
