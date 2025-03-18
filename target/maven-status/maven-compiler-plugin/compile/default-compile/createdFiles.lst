@@ -1,0 +1,4 @@
+com/example/demo/DemoApplication.class
+com/example/demo/config/RabbitMQConfig.class
+com/example/demo/controller/ConsumerController.class
+com/example/demo/controller/ProducerController.class
