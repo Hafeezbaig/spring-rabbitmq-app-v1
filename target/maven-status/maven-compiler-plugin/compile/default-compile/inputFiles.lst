@@ -1,4 +1,5 @@
-/Users/hafeez/Desktop/in28minutes data/Java-SpringBoot-Projects-Tasks-In28Minutes/spring-rabbitmq-app-v1/src/main/java/com/example/demo/DemoApplication.java
-/Users/hafeez/Desktop/in28minutes data/Java-SpringBoot-Projects-Tasks-In28Minutes/spring-rabbitmq-app-v1/src/main/java/com/example/demo/config/RabbitMQConfig.java
-/Users/hafeez/Desktop/in28minutes data/Java-SpringBoot-Projects-Tasks-In28Minutes/spring-rabbitmq-app-v1/src/main/java/com/example/demo/controller/ConsumerController.java
-/Users/hafeez/Desktop/in28minutes data/Java-SpringBoot-Projects-Tasks-In28Minutes/spring-rabbitmq-app-v1/src/main/java/com/example/demo/controller/ProducerController.java
+/Users/hafeez/Desktop/in28minutes data/Java-SpringBoot-Projects-Tasks-In28Minutes/spring-rabbitmq-app-v1/src/main/java/com/in28minutes/SpringMessageBrokerApplication.java
+/Users/hafeez/Desktop/in28minutes data/Java-SpringBoot-Projects-Tasks-In28Minutes/spring-rabbitmq-app-v1/src/main/java/com/in28minutes/config/RabbitMQConfig.java
+/Users/hafeez/Desktop/in28minutes data/Java-SpringBoot-Projects-Tasks-In28Minutes/spring-rabbitmq-app-v1/src/main/java/com/in28minutes/controller/ConsumerController.java
+/Users/hafeez/Desktop/in28minutes data/Java-SpringBoot-Projects-Tasks-In28Minutes/spring-rabbitmq-app-v1/src/main/java/com/in28minutes/controller/ProducerController.java
+/Users/hafeez/Desktop/in28minutes data/Java-SpringBoot-Projects-Tasks-In28Minutes/spring-rabbitmq-app-v1/src/main/java/com/in28minutes/dto/GreetingsDto.java

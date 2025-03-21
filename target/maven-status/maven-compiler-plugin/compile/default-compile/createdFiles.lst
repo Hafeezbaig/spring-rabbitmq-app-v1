@@ -1,4 +1,5 @@
-com/example/demo/DemoApplication.class
-com/example/demo/config/RabbitMQConfig.class
-com/example/demo/controller/ConsumerController.class
-com/example/demo/controller/ProducerController.class
+com/in28minutes/controller/ConsumerController.class
+com/in28minutes/controller/ProducerController.class
+com/in28minutes/config/RabbitMQConfig.class
+com/in28minutes/dto/GreetingsDto.class
+com/in28minutes/SpringMessageBrokerApplication.class

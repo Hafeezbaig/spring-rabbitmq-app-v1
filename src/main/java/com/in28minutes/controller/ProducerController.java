@@ -1,5 +1,6 @@
-package com.example.demo.controller;
+package com.in28minutes.controller;
 
+import com.in28minutes.dto.GreetingsDto;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.http.HttpStatus;

@@ -1,4 +1,4 @@
-package com.example.demo.config;  // Change this if your package name is different
+package com.in28minutes.config;  // Change this if your package name is different
 
 import org.springframework.amqp.core.Queue;
 import org.springframework.context.annotation.Bean;

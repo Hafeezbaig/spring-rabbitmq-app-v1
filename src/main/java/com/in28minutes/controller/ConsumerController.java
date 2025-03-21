@@ -1,4 +1,4 @@
-package com.example.demo.controller;  // Ensure this matches your project structure
+package com.in28minutes.controller;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
@@ -8,21 +8,24 @@ import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
 @RestController
-@RequestMapping("/consumer")  // API base URL: /consumer
-@Slf4j  // Enables logging using Lombok
+@RequestMapping("/consumer")
+@Slf4j
 public class ConsumerController {
 
+    /**
+     * BlockingQueue is used to store messages received from RabbitMQ.
+     * LinkedBlockingQueue ensures thread-safe access to messages.
+     */
     private final BlockingQueue<String> messages = new LinkedBlockingQueue<>();
 
-    @RabbitListener(queues = "myQueue")  // Listens for messages in "myQueue"
+    @RabbitListener(queues = "myQueue")
     public void receiveMessage(String message) {
         log.info("Received message: {}", message);
         messages.add(message);
     }
 
-    @GetMapping  // GET request to retrieve messages
+    @GetMapping("/consume")
     public String consumeMessage() {
-        return messages.poll();  // Returns and removes the first message in the queue
+        return messages.poll();
     }
 }
-
