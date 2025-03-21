@@ -1,0 +1,13 @@
+1. Storing credentials directly in docker-compose.yml is not recommended for security reasons. pass it via .env file
+
+```
+environment:
+  RABBITMQ_DEFAULT_USER: ${RABBITMQ_DEFAULT_USER}
+  RABBITMQ_DEFAULT_PASS: ${RABBITMQ_DEFAULT_PASS}
+```
+
+2. specify a restart policy for the container
+
+3. create a cmds.txt file
+    a. share the docker-compose start and stop commands
+    b. share the rmq ui endpoint

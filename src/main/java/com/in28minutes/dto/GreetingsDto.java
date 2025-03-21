@@ -1,9 +1,8 @@
 package com.in28minutes.dto;
 
+import lombok.Data;
+
+@Data
 public class GreetingsDto {
     private String message;
-
-    // Getters and Setters
-    public String getMessage() { return message; }
-    public void setMessage(String message) { this.message = message; }
 }

@@ -1,31 +1,28 @@
 package com.in28minutes.controller;
 
+import com.in28minutes.service.AsyncMessageHandler;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.LinkedBlockingQueue;
-
 @RestController
-@RequestMapping("/consumer")
+@RequestMapping("/api")
 @Slf4j
 public class ConsumerController {
 
-    /**
-     * BlockingQueue is used to store messages received from RabbitMQ.
-     * LinkedBlockingQueue ensures thread-safe access to messages.
-     */
-    private final BlockingQueue<String> messages = new LinkedBlockingQueue<>();
+    private final AsyncMessageHandler messageHandler;
 
-    @RabbitListener(queues = "myQueue")
-    public void receiveMessage(String message) {
-        log.info("Received message: {}", message);
-        messages.add(message);
+    public ConsumerController(AsyncMessageHandler messageHandler) {
+        this.messageHandler = messageHandler;
     }
 
+
+    /**
+     * <a href="https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/BlockingQueue.html">BlockingQueue</a>
+     * is used for thread-safe communication between producer and consumer threads.
+     * LinkedBlockingQueue is a thread-safe FIFO queue backed by linked nodes, suitable for message buffering.
+     */
     @GetMapping("/consume")
     public String consumeMessage() {
-        return messages.poll();
+        return messageHandler.consumeMessage();
     }
 }

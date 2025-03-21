@@ -1,0 +1,18 @@
+# Commands to start RabbitMQ
+docker-compose -f docker/docker-compose.yml up -d
+
+# Commands to stop RabbitMQ
+docker-compose -f docker/docker-compose.yml down
+
+# Restart RabbitMQ container
+docker restart rabbitmq-container
+
+# Check running RabbitMQ container
+docker ps
+
+# RabbitMQ Management UI URL
+http://localhost:15672
+
+# Default credentials
+Username: guest
+Password: guest

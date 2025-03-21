@@ -3,3 +3,4 @@
 /Users/hafeez/Desktop/in28minutes data/Java-SpringBoot-Projects-Tasks-In28Minutes/spring-rabbitmq-app-v1/src/main/java/com/in28minutes/controller/ConsumerController.java
 /Users/hafeez/Desktop/in28minutes data/Java-SpringBoot-Projects-Tasks-In28Minutes/spring-rabbitmq-app-v1/src/main/java/com/in28minutes/controller/ProducerController.java
 /Users/hafeez/Desktop/in28minutes data/Java-SpringBoot-Projects-Tasks-In28Minutes/spring-rabbitmq-app-v1/src/main/java/com/in28minutes/dto/GreetingsDto.java
+/Users/hafeez/Desktop/in28minutes data/Java-SpringBoot-Projects-Tasks-In28Minutes/spring-rabbitmq-app-v1/src/main/java/com/in28minutes/service/AsyncMessageHandler.java

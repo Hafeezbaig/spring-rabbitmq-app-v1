@@ -1,14 +1,22 @@
-package com.in28minutes.config;  // Change this if your package name is different
+package com.in28minutes.config;
 
 import org.springframework.amqp.core.Queue;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-@Configuration  // Marks this as a Spring Boot configuration class
+@Configuration
+@ConfigurationProperties(prefix = "rabbitmq")
 public class RabbitMQConfig {
 
-    @Bean  // Creates a RabbitMQ queue when the application starts
+    private String queueName;
+
+    public void setQueueName(String queueName) {
+        this.queueName = queueName;
+    }
+
+    @Bean
     public Queue myQueue() {
-        return new Queue("myQueue", true);  // Queue name: "myQueue", durable = true
+        return new Queue(queueName, true);
     }
 }

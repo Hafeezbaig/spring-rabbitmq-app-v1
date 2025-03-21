@@ -1,5 +1,6 @@
-com/in28minutes/controller/ConsumerController.class
 com/in28minutes/controller/ProducerController.class
 com/in28minutes/config/RabbitMQConfig.class
-com/in28minutes/dto/GreetingsDto.class
 com/in28minutes/SpringMessageBrokerApplication.class
+com/in28minutes/controller/ConsumerController.class
+com/in28minutes/service/AsyncMessageHandler.class
+com/in28minutes/dto/GreetingsDto.class

@@ -56,13 +56,14 @@ kill -9 <PID>
 - **Method:** `POST`
 - **URL:**
   ```sh
-  curl -X POST http://localhost:9100/producer \
-       -H "Content-Type: application/json" \
-       -d '{"message": "Hello, RabbitMQ!"}'
+  curl -X POST http://localhost:9100/api/produce \
+     -H "Content-Type: application/json" \
+     -d '{"message": "Hello, RabbitMQ!"}'
+
   ```
 - **Expected Response:**
   ```json
-  { "statusCode": 202, "info": "Acknowledged" }
+  {"info":"Acknowledged","statusCode":202}
   ```
 
 ---
@@ -71,7 +72,7 @@ kill -9 <PID>
 - **Method:** `GET`
 - **URL:**
   ```sh
-  curl -X GET http://localhost:9100/consumer/consume
+  curl -X GET http://localhost:9100/api/consume
   ```
 - **Expected Response:**
   ```sh
@@ -110,3 +111,8 @@ mvn spring-boot:run
 
 ---
 
+## Postman Collection:
+
+- See SpringMessageBrokerAPI.postman_collection.json for ready-to-use Postman API tests.
+
+---
