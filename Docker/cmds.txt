@@ -13,6 +13,16 @@ docker ps
 # RabbitMQ Management UI URL
 http://localhost:15672
 
-# Default credentials
+# Default credentials (configured via .env file)
 Username: guest
 Password: guest
+
+# ----------------------------------------
+# .env file setup (required before Docker up)
+
+# Create a file named `.env` in the project root with the following content:
+# RABBITMQ_DEFAULT_USER=guest
+# RABBITMQ_DEFAULT_PASS=guest
+
+# These variables will automatically be picked up by docker-compose.yml
+# ----------------------------------------
