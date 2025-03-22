@@ -63,7 +63,7 @@ kill -9 <PID>
   ```
 - **Expected Response:**
   ```json
-  {"info":"Acknowledged","statusCode":202}
+  {"statusCode":202,"info":"Acknowledged"}
   ```
 
 ---
@@ -114,5 +114,9 @@ mvn spring-boot:run
 ## Postman Collection:
 
 - See SpringMessageBrokerAPI.postman_collection.json for ready-to-use Postman API tests.
+
+---
+
+- This project includes examples of Direct, Fanout, and Topic exchanges in the configuration file (RabbitMQConfig.java) for learning purposes.
 
 ---

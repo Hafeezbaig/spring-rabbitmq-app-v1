@@ -45,4 +45,20 @@ public class ProducerController {
                 "info", "Acknowledged"
         ));
     }
+
+    /**
+     * GET-based producer endpoint (for quick testing via browser)
+     * Example: http://localhost:9100/api/produce?message=hello
+     */
+    @GetMapping("/produce")
+    public ResponseEntity<?> sendMessageViaQueryParam(@RequestParam String message) {
+        log.info("Sending message via GET: {}", message);
+        rabbitTemplate.convertAndSend(queueName, message);
+        log.info("Message sent successfully to RMQ (via GET)");
+
+        return ResponseEntity.accepted().body(Map.of(
+                "statusCode", 202,
+                "info", "Acknowledged GET"
+        ));
+    }
 }

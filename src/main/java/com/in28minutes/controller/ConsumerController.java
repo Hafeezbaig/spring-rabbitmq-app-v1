@@ -1,6 +1,6 @@
 package com.in28minutes.controller;
 
-import com.in28minutes.service.AsyncMessageHandler;
+import com.in28minutes.handler.AsyncMessageHandler;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 

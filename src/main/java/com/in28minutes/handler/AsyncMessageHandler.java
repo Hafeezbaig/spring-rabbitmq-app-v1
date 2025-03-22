@@ -1,4 +1,4 @@
-package com.in28minutes.service;
+package com.in28minutes.handler;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
