@@ -20,8 +20,11 @@ public class ProducerController {
 
     private final RabbitTemplate rabbitTemplate;
 
-    @Value("${rabbitmq.queue-name}")
-    private String queueName;
+    @Value("${rabbitmq.exchange-name}")
+    private String exchangeName;
+
+    @Value("${rabbitmq.routing-key}")
+    private String routingKey;
 
     public ProducerController(RabbitTemplate rabbitTemplate) {
         this.rabbitTemplate = rabbitTemplate;
@@ -37,28 +40,12 @@ public class ProducerController {
     public ResponseEntity<?> sendMessage(@RequestBody GreetingsDto greetingsDto) {
         String msg = greetingsDto.getMessage();
         log.info("Sending message: {}", msg);
-        rabbitTemplate.convertAndSend(queueName, msg);
-        log.info("Message sent successfully to RMQ");
+        rabbitTemplate.convertAndSend(exchangeName, routingKey, msg);
+        log.info("Message sent successfully to RMQ (via Direct Exchange)");
 
         return ResponseEntity.accepted().body(Map.of(
                 "statusCode", 202,
                 "info", "Acknowledged"
-        ));
-    }
-
-    /**
-     * GET-based producer endpoint (for quick testing via browser)
-     * Example: http://localhost:9100/api/produce?message=hello
-     */
-    @GetMapping("/produce")
-    public ResponseEntity<?> sendMessageViaQueryParam(@RequestParam String message) {
-        log.info("Sending message via GET: {}", message);
-        rabbitTemplate.convertAndSend(queueName, message);
-        log.info("Message sent successfully to RMQ (via GET)");
-
-        return ResponseEntity.accepted().body(Map.of(
-                "statusCode", 202,
-                "info", "Acknowledged GET"
         ));
     }
 }
