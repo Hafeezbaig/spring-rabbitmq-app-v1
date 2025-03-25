@@ -21,7 +21,7 @@ docker run -d --name rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:3-management
 ```
 
 ### 2. Verify RabbitMQ Is Running
-Visit:
+Visit:  
 http://localhost:15672
 
 Login credentials:
@@ -124,6 +124,19 @@ mvn spring-boot:run
 ## Postman Collection
 
 See `SpringMessageBrokerAPI.postman_collection.json` for ready-to-use API tests.
+
+---
+
+## API Documentation (Swagger UI)
+
+Swagger UI is integrated and provides an interactive way to view and test all API endpoints.
+
+- Visit: [http://localhost:9100/swagger-ui/index.html](http://localhost:9100/swagger-ui/index.html)
+
+This interface allows you to:
+- Send requests and view responses
+- Explore each exchange type and its behavior
+- Understand request/response formats for all endpoints
 
 ---
 
