@@ -1,6 +1,8 @@
 package com.in28minutes.controller;
 
 import com.in28minutes.dto.Greetings;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
@@ -16,6 +18,7 @@ import java.util.Map;
  */
 @RestController
 @RequestMapping("/api")
+@Tag(name = "Producer Controller", description = "Sends messages to RabbitMQ using Direct Exchange")
 public class ProducerController {
 
     private static final Logger log = LoggerFactory.getLogger(ProducerController.class);
@@ -38,6 +41,10 @@ public class ProducerController {
      *      -H "Content-Type: application/json" \
      *      -d '{"message": "Hello, RabbitMQ!"}'
      */
+    @Operation(
+            summary = "Send message to RabbitMQ queue",
+            description = "Publishes a message to RabbitMQ via direct exchange using configured routing key"
+    )
     @PostMapping("/produce")
     public ResponseEntity<?> sendMessage(@RequestBody Greetings greetings) {
         String msg = greetings.message();
