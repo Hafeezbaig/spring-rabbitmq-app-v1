@@ -1,7 +1,8 @@
 package com.in28minutes.controller;
 
-import com.in28minutes.dto.GreetingsDto;
-import lombok.extern.slf4j.Slf4j;
+import com.in28minutes.dto.Greetings;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
@@ -14,8 +15,9 @@ import java.util.Map;
  */
 @RestController
 @RequestMapping("/api")
-@Slf4j
 public class ExchangeController {
+
+    private static final Logger log = LoggerFactory.getLogger(ExchangeController.class);
 
     private final RabbitTemplate rabbitTemplate;
 
@@ -36,8 +38,8 @@ public class ExchangeController {
      *      -d '{"message": "Broadcast to all"}'
      */
     @PostMapping("/fanout")
-    public ResponseEntity<?> sendToFanout(@RequestBody GreetingsDto greetingsDto) {
-        String msg = greetingsDto.getMessage();
+    public ResponseEntity<?> sendToFanout(@RequestBody Greetings greetings) {
+        String msg = greetings.message();
         log.info("Sending to fanout exchange: {}", msg);
         rabbitTemplate.convertAndSend(fanoutExchange, "", msg); // No routing key for fanout
         return ResponseEntity.ok(Map.of("info", "Sent to fanout exchange"));
@@ -50,8 +52,8 @@ public class ExchangeController {
      *      -d '{"message": "User created event"}'
      */
     @PostMapping("/topic")
-    public ResponseEntity<?> sendToTopic(@RequestParam String key, @RequestBody GreetingsDto greetingsDto) {
-        String msg = greetingsDto.getMessage();
+    public ResponseEntity<?> sendToTopic(@RequestParam String key, @RequestBody Greetings greetings) {
+        String msg = greetings.message();
         log.info("Sending to topic exchange with key [{}]: {}", key, msg);
         rabbitTemplate.convertAndSend(topicExchange, key, msg);
         return ResponseEntity.ok(Map.of("info", "Sent to topic exchange with routing key: " + key));

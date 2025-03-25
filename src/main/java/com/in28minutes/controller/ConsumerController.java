@@ -1,20 +1,21 @@
 package com.in28minutes.controller;
 
 import com.in28minutes.handler.AsyncMessageHandler;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api")
-@Slf4j
 public class ConsumerController {
+
+    private static final Logger log = LoggerFactory.getLogger(ConsumerController.class);
 
     private final AsyncMessageHandler messageHandler;
 
     public ConsumerController(AsyncMessageHandler messageHandler) {
         this.messageHandler = messageHandler;
     }
-
 
     /**
      * <a href="https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/BlockingQueue.html">BlockingQueue</a>

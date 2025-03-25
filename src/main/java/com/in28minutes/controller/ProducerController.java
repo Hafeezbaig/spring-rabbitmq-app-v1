@@ -1,7 +1,8 @@
 package com.in28minutes.controller;
 
-import com.in28minutes.dto.GreetingsDto;
-import lombok.extern.slf4j.Slf4j;
+import com.in28minutes.dto.Greetings;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
@@ -15,8 +16,9 @@ import java.util.Map;
  */
 @RestController
 @RequestMapping("/api")
-@Slf4j
 public class ProducerController {
+
+    private static final Logger log = LoggerFactory.getLogger(ProducerController.class);
 
     private final RabbitTemplate rabbitTemplate;
 
@@ -37,8 +39,8 @@ public class ProducerController {
      *      -d '{"message": "Hello, RabbitMQ!"}'
      */
     @PostMapping("/produce")
-    public ResponseEntity<?> sendMessage(@RequestBody GreetingsDto greetingsDto) {
-        String msg = greetingsDto.getMessage();
+    public ResponseEntity<?> sendMessage(@RequestBody Greetings greetings) {
+        String msg = greetings.message();
         log.info("Sending message: {}", msg);
         rabbitTemplate.convertAndSend(exchangeName, routingKey, msg);
         log.info("Message sent successfully to RMQ (via Direct Exchange)");
