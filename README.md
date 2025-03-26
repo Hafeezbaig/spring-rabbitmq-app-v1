@@ -7,6 +7,21 @@ This project demonstrates how to integrate RabbitMQ with a Spring Boot applicati
 
 ---
 
+## Tools Required
+
+- Java 21
+- Maven 3.9+
+- Docker (with Docker Compose)
+- IntelliJ IDEA (or any IDE)
+- Postman or Curl
+- Internet access to pull RabbitMQ Docker image
+
+For setup instructions on Mac or Windows, see:
+- [Installing Rabbit MQ - MacOS](https://scribehow.com/shared/Installing_Rabbit_MQ__MacOS__Sr5zdWkDTmywQAU0zb1BZw)
+- [Installing Rabbit MQ - Windows](https://scribehow.com/shared/Installing_Rabbit_MQ__Windows__FSQhxP9dRSu-yEzc-D9Hpw)
+
+---
+
 ## Setup and Running the Application
 
 ### 1. Start RabbitMQ in Docker
@@ -32,25 +47,31 @@ Login credentials:
 
 ## Build and Run the Spring Boot Application
 
-### 1. Clean and Reinstall Dependencies
+### Option 1: Using Terminal
+
+#### 1. Clean and Reinstall Dependencies
 ```
 mvn clean install
 ```
 
-### 2. Start the Spring Boot Application
+#### 2. Start the Application
 ```
 mvn spring-boot:run
 ```
 
-### 3. Check Running Ports
+#### 3. Check and Kill Port if Blocked
 ```
 lsof -i :9100
-```
-
-### 4. Kill a Process Using Port 9100
-```
 kill -9 <PID>
 ```
+
+---
+
+### Option 2: Using IntelliJ IDEA
+
+1. Open the project in IntelliJ
+2. Right-click `SpringMessageBrokerApplication.java` and select `Run`
+3. Ensure port 9100 is not blocked
 
 ---
 
@@ -68,8 +89,6 @@ Expected Response:
 {"statusCode":202,"info":"Acknowledged"}
 ```
 
----
-
 ### 2. Receive a Message from the Queue
 ```
 curl -X GET http://localhost:9100/api/consume
@@ -80,16 +99,12 @@ Expected Response:
 Hello, RabbitMQ!
 ```
 
----
-
 ### 3. Send Message to Fanout Exchange
 ```
 curl -X POST http://localhost:9100/api/fanout \
      -H "Content-Type: application/json" \
      -d '{"message": "Broadcast to all consumers"}'
 ```
-
----
 
 ### 4. Send Message to Topic Exchange
 ```
@@ -100,43 +115,21 @@ curl -X POST "http://localhost:9100/api/topic?key=user.created" \
 
 ---
 
-## Stopping the Application
-
-### Stop Spring Boot
-Use Ctrl + C in the terminal where Spring Boot is running
-
-### Stop RabbitMQ
-```
-docker stop rabbitmq-container
-```
-
----
-
-## Restarting Everything
-
-```
-docker-compose -f docker/docker-compose.yml up -d
-mvn spring-boot:run
-```
-
----
-
-## Postman Collection
-
-See `SpringMessageBrokerAPI.postman_collection.json` for ready-to-use API tests.
-
----
-
 ## API Documentation (Swagger UI)
 
 Swagger UI is integrated and provides an interactive way to view and test all API endpoints.
 
 - Visit: [http://localhost:9100/swagger-ui/index.html](http://localhost:9100/swagger-ui/index.html)
 
-This interface allows you to:
-- Send requests and view responses
-- Explore each exchange type and its behavior
-- Understand request/response formats for all endpoints
+### Screenshot:
+
+![Swagger UI Screenshot](docs/swagger-ui-screenshot.png)
+
+---
+
+## Postman Collection
+
+See `SpringMessageBrokerAPI.postman_collection.json` for ready-to-use API tests.
 
 ---
 
