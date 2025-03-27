@@ -75,42 +75,76 @@ kill -9 <PID>
 
 ---
 
-## API Endpoints (Using Postman or Curl)
+## API Endpoints (Using Postman or Swagger UI)
 
 ### 1. Send Message to Direct Exchange
-```
-curl -X POST http://localhost:9100/api/produce \
-     -H "Content-Type: application/json" \
-     -d '{"message": "Hello, RabbitMQ!"}'
+
+**Endpoint:** `POST /api/produce`
+
+**Payload:**
+```json
+{
+  "message": "Hello, RabbitMQ!"
+}
 ```
 
-Expected Response:
+**Response:**
+```json
+{
+  "statusCode": 202,
+  "info": "Acknowledged"
+}
 ```
-{"statusCode":202,"info":"Acknowledged"}
-```
+
+---
 
 ### 2. Receive a Message from the Queue
-```
-curl -X GET http://localhost:9100/api/consume
-```
 
-Expected Response:
+**Endpoint:** `GET /api/consume`
+
+**Response:**
 ```
 Hello, RabbitMQ!
 ```
 
+---
+
 ### 3. Send Message to Fanout Exchange
-```
-curl -X POST http://localhost:9100/api/fanout \
-     -H "Content-Type: application/json" \
-     -d '{"message": "Broadcast to all consumers"}'
+
+**Endpoint:** `POST /api/fanout`
+
+**Payload:**
+```json
+{
+  "message": "Hello, RabbitMQ!"
+}
 ```
 
-### 4. Send Message to Topic Exchange
+**Response:**
+```json
+{
+  "info": "Sent to fanout exchange"
+}
 ```
-curl -X POST "http://localhost:9100/api/topic?key=user.created" \
-     -H "Content-Type: application/json" \
-     -d '{"message": "User created event"}'
+
+---
+
+### 4. Send Message to Topic Exchange
+
+**Endpoint:** `POST /api/topic?key=user.created`
+
+**Payload:**
+```json
+{
+  "message": "Hello, RabbitMQ!"
+}
+```
+
+**Response:**
+```json
+{
+  "info": "Sent to topic exchange with routing key: user.created"
+}
 ```
 
 ---
